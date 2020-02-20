@@ -69,8 +69,8 @@ This project requires GPU acceleration to run efficiently.
 
 4. Create JSON files corresponding to the train and validation datasets.
 	```
-	python create_json_files.py data/LibriSpeech/dev-clean/ train_corpus.json
-	python create_json_files.py data/LibriSpeech/test-clean/ valid_corpus.json
+	python create_desc_json.py data/LibriSpeech/dev-clean/ train_corpus.json
+	python create_desc_json.py data/LibriSpeech/test-clean/ valid_corpus.json
 	```
 
 5. Start Jupyter:
@@ -137,8 +137,8 @@ You should run this project with GPU acceleration for best performance.
 
 8. Create JSON files corresponding to the train and validation datasets.
 	```
-	python create_json_files.py data/LibriSpeech/dev-clean/ train_corpus.json
-	python create_json_files.py data/LibriSpeech/test-clean/ valid_corpus.json
+	python create_desc_json.py data/LibriSpeech/dev-clean/ train_corpus.json
+	python create_desc_json.py data/LibriSpeech/test-clean/ valid_corpus.json
 	```
 
 9. Start Jupyter:
