@@ -98,9 +98,15 @@ def deep_rnn_model(input_dim, units, recur_layers, output_dim=29):
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
     # TODO: Add recurrent layers, each with batch normalization
-    ...
+    for i in range(recur_layers):
+        if i == 0:
+            lstm_rnn = LSTM(units, return_sequences=True)(input_data)  
+        else:
+            lstm_rnn = LSTM(units, return_sequences=True)(bn_rnn)
+        bn_rnn = BatchNormalization(lstm_rnn)
+        
     # TODO: Add a TimeDistributed(Dense(output_dim)) layer
-    time_dense = ...
+    time_dense = TimeDistributed(Dense(output_dim)(bn_rnn)
     # Add softmax activation layer
     y_pred = Activation('softmax', name='softmax')(time_dense)
     # Specify the model
