@@ -121,9 +121,9 @@ def bidirectional_rnn_model(input_dim, units, output_dim=29):
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
     # TODO: Add bidirectional recurrent layer
-    bidir_rnn = ...
+    bidir_rnn = Bidirectional(LSTM(units, return_sequences=True), input_shape=(None, input_dim))(input_data)
     # TODO: Add a TimeDistributed(Dense(output_dim)) layer
-    time_dense = ...
+    time_dense = TimeDistributed(Dense(output_dim)(bn_rnn)
     # Add softmax activation layer
     y_pred = Activation('softmax', name='softmax')(time_dense)
     # Specify the model
