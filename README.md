@@ -148,7 +148,7 @@ You should run this project with GPU acceleration for best performance.
 
 10. Before running code, change the kernel to match the `nlpnd` environment by using the drop-down menu.  Then, follow the instructions in the notebook.
 
-![select kernel][image2]
+	![select kernel][image2]
 
 __NOTE:__ While some code has already been implemented to get you started, you will need to implement additional functionality to successfully answer all of the questions included in the notebook. __Unless requested, do not modify code that has already been included.__
 
