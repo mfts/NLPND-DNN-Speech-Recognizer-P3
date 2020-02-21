@@ -1,3 +1,5 @@
 data/LibriSpeech/
 .DS_Store
 __pycache__/
+train_corpus.json
+valid_corpus.json
