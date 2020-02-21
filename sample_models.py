@@ -132,21 +132,21 @@ def bidirectional_rnn_model(input_dim, units, output_dim=29):
     print(model.summary())
     return model
 
-def final_model(input_dim, filters, kernel_size, conv_stride,
-    conv_border_mode, units, output_dim=29):
+def final_model(input_dim, units, output_dim=29):
     """ Build a deep network for speech 
     """
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
     # Add convolutional layer
-    conv_1d = Conv1D(filters, kernel_size, 
-                     strides=conv_stride, 
-                     padding=conv_border_mode,
+    conv_1d = Conv1D(filters=200, 
+                     kernel_size=11, 
+                     strides=2, 
+                     padding='valid',
                      activation='relu',
                      name='conv1d')(input_data)
     # Add batch normalization
     bn_cnn = BatchNormalization(name='bn_conv_1d')(conv_1d)
-    bidir_rnn = Bidirectional(LSTM(units, return_sequences=True), input_shape=(None, input_dim))(input_data)
+    bidir_rnn = Bidirectional(LSTM(units, return_sequences=True), input_shape=(None, input_dim))(bn_cnn)
     bn_rnn = BatchNormalization(name='bn_rnn_1d')(bidir_rnn)
     time_dense = TimeDistributed(Dense(output_dim))(bn_rnn)
     # TODO: Add softmax activation layer
@@ -155,6 +155,6 @@ def final_model(input_dim, filters, kernel_size, conv_stride,
     model = Model(inputs=input_data, outputs=y_pred)
     # TODO: Specify model.output_length
     model.output_length = lambda x: cnn_output_length(
-        x, kernel_size, conv_border_mode, conv_stride)
+        x, 11, 'valid', 2)
     print(model.summary())
     return model
