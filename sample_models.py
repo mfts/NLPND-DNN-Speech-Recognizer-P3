@@ -148,6 +148,7 @@ def final_model(input_dim, filters, kernel_size, conv_stride,
     bn_cnn = BatchNormalization(name='bn_conv_1d')(conv_1d)
     bidir_rnn = Bidirectional(LSTM(units, return_sequences=True), input_shape=(None, input_dim))(input_data)
     bn_rnn = BatchNormalization(name='bn_rnn_1d')(bidir_rnn)
+    time_dense = TimeDistributed(Dense(output_dim))(bn_rnn)
     # TODO: Add softmax activation layer
     y_pred = Activation('softmax', name='softmax')(time_dense)
     # Specify the model
